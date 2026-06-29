@@ -8,15 +8,15 @@ const day = document.getElementById("day");
 let hour12 = true;
 
 function pad(n) {
-    return String(n).padStart(2, "0")
+    return String(n).padStart(2, "0");
 }
 
 const clock = () => {
-    const now = new Date()
+    const now = new Date();
 
-    let h = now.getHours()
-    let m = now.getMinutes()
-    let s = now.getSeconds()
+    let h = now.getHours();
+    let m = now.getMinutes();
+    let s = now.getSeconds();
 
     let AmPm = "";
 
@@ -27,13 +27,12 @@ const clock = () => {
 
     time.textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
     ampm.textContent = AmPm;
-    ampm.style.display = hour12 ? "Block" : "none";
-
+    ampm.style.display = hour12 ? "block" : "none"; 
 
     let NowDate = now.toLocaleDateString('en-US', {
         day: "numeric",
         month: "long",
-        Year: "numeric"
+        year: "numeric"
     });
 
     let nowDay = now.toLocaleDateString("en-US", {
@@ -44,18 +43,20 @@ const clock = () => {
     day.textContent = nowDay;
 }
 
-
 btn_12.addEventListener("click", () => {
-    hour12 = true 
+    hour12 = true;
     btn_12.classList.add("activeToggle");
     btn_24.classList.remove("activeToggle");
-    
-})
+    clock(); 
+});
+
 btn_24.addEventListener("click", () => {
-    hour12 = false  
+    hour12 = false;  
     btn_12.classList.remove("activeToggle");
     btn_24.classList.add("activeToggle");
+    clock(); 
+});
 
-})
 
+clock(); 
 setInterval(clock, 1000);
